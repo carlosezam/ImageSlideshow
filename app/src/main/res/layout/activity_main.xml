@@ -16,9 +16,12 @@
             app:iss_period="1500"
             app:iss_delay="0"
             app:iss_text_align="CENTER"
+            app:iss_indicator_align="CENTER"
             app:iss_title_background="@drawable/gradient"
             app:iss_error_image="@drawable/error"
             app:iss_selected_dot="@drawable/default_selected_dot"
-            app:iss_unselected_dot="@drawable/default_unselected_dot"/>
+            app:iss_unselected_dot="@drawable/default_unselected_dot"
+            app:iss_indicator_margin="16dp"
+            />
 
 </LinearLayout>

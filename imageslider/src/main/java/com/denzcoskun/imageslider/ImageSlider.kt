@@ -9,6 +9,8 @@ import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.denzcoskun.imageslider.adapters.ViewPagerAdapter
@@ -30,7 +32,7 @@ class ImageSlider @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) :
-    RelativeLayout(context, attrs, defStyleAttr) {
+    ConstraintLayout(context, attrs, defStyleAttr) {
 
     private var viewPager: ViewPager? = null
     private var pagerDots: LinearLayout? = null
@@ -48,6 +50,7 @@ class ImageSlider @JvmOverloads constructor(
 
     private var selectedDot = 0
     private var unselectedDot = 0
+    private var paddingDot = 0
     private var errorImage = 0
     private var placeholder = 0
     private var titleBackground = 0
@@ -79,14 +82,20 @@ class ImageSlider @JvmOverloads constructor(
         selectedDot = typedArray.getResourceId(R.styleable.ImageSlider_iss_selected_dot, R.drawable.default_selected_dot)
         unselectedDot = typedArray.getResourceId(R.styleable.ImageSlider_iss_unselected_dot, R.drawable.default_unselected_dot)
         titleBackground = typedArray.getResourceId(R.styleable.ImageSlider_iss_title_background, R.drawable.gradient)
+        paddingDot = typedArray.getDimensionPixelSize(R.styleable.ImageSlider_iss_indicator_margin, 0)
 
         if (typedArray.getString(R.styleable.ImageSlider_iss_text_align) != null){
-            textAlign = typedArray.getString(R.styleable.ImageSlider_iss_text_align)
+            textAlign = typedArray.getString(R.styleable.ImageSlider_iss_text_align)!!
         }
 
         if (typedArray.getString(R.styleable.ImageSlider_iss_indicator_align) != null){
-            indicatorAlign = typedArray.getString(R.styleable.ImageSlider_iss_indicator_align)
+            indicatorAlign = typedArray.getString(R.styleable.ImageSlider_iss_indicator_align)!!
         }
+
+        val constraintSet = ConstraintSet()
+        constraintSet.clone( this )
+        constraintSet.setMargin( R.id.view_pager, ConstraintSet.BOTTOM, paddingDot )
+        constraintSet.applyTo( this )
 
         if (touchListener != null){
             viewPager!!.setOnTouchListener { v, event ->
