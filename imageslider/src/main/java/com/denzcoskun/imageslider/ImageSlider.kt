@@ -51,6 +51,7 @@ class ImageSlider @JvmOverloads constructor(
     private var selectedDot = 0
     private var unselectedDot = 0
     private var paddingDot = 0
+    private var pagerRatio: String? = null
     private var errorImage = 0
     private var placeholder = 0
     private var titleBackground = 0
@@ -83,6 +84,7 @@ class ImageSlider @JvmOverloads constructor(
         unselectedDot = typedArray.getResourceId(R.styleable.ImageSlider_iss_unselected_dot, R.drawable.default_unselected_dot)
         titleBackground = typedArray.getResourceId(R.styleable.ImageSlider_iss_title_background, R.drawable.gradient)
         paddingDot = typedArray.getDimensionPixelSize(R.styleable.ImageSlider_iss_indicator_margin, 0)
+        pagerRatio = typedArray.getString(R.styleable.ImageSlider_iss_pager_ratio)
 
         if (typedArray.getString(R.styleable.ImageSlider_iss_text_align) != null){
             textAlign = typedArray.getString(R.styleable.ImageSlider_iss_text_align)!!
@@ -95,6 +97,7 @@ class ImageSlider @JvmOverloads constructor(
         val constraintSet = ConstraintSet()
         constraintSet.clone( this )
         constraintSet.setMargin( R.id.view_pager, ConstraintSet.BOTTOM, paddingDot )
+        pagerRatio?.let { ratio -> constraintSet.setDimensionRatio(R.id.view_pager, ratio) }
         constraintSet.applyTo( this )
 
         if (touchListener != null){

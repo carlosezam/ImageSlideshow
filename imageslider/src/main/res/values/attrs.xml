@@ -13,5 +13,6 @@
         <attr name="iss_text_align" format="string"/>
         <attr name="iss_indicator_align" format="string"/>
         <attr name="iss_indicator_margin" format="dimension"/>
+        <attr name="iss_pager_ratio" format="string"/>
     </declare-styleable>
 </resources>
