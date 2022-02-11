@@ -21,7 +21,8 @@
             app:iss_error_image="@drawable/error"
             app:iss_selected_dot="@drawable/default_selected_dot"
             app:iss_unselected_dot="@drawable/default_unselected_dot"
-            app:iss_indicator_margin="16dp"
+            app:iss_dots_spacing="12dp"
+            app:iss_indicator_margin="12dp"
             app:iss_pager_ratio="16:9"
             />
 

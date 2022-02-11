@@ -51,6 +51,7 @@ class ImageSlider @JvmOverloads constructor(
     private var selectedDot = 0
     private var unselectedDot = 0
     private var paddingDot = 0
+    private var dotsSpacing = 8
     private var pagerRatio: String? = null
     private var errorImage = 0
     private var placeholder = 0
@@ -85,6 +86,7 @@ class ImageSlider @JvmOverloads constructor(
         titleBackground = typedArray.getResourceId(R.styleable.ImageSlider_iss_title_background, R.drawable.gradient)
         paddingDot = typedArray.getDimensionPixelSize(R.styleable.ImageSlider_iss_indicator_margin, 0)
         pagerRatio = typedArray.getString(R.styleable.ImageSlider_iss_pager_ratio)
+        dotsSpacing = typedArray.getDimensionPixelSize(R.styleable.ImageSlider_iss_dots_spacing, dotsSpacing)
 
         if (typedArray.getString(R.styleable.ImageSlider_iss_text_align) != null){
             textAlign = typedArray.getString(R.styleable.ImageSlider_iss_text_align)!!
@@ -162,7 +164,10 @@ class ImageSlider @JvmOverloads constructor(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-            params.setMargins(8, 0, 8, 0)
+
+            val spacing = if( i == 0 ) 0 else dotsSpacing
+
+            params.setMargins(spacing,0, 0, 0)
             pagerDots!!.addView(dots!![i], params)
         }
         dots!![0]!!.setImageDrawable(ContextCompat.getDrawable(context, selectedDot))
