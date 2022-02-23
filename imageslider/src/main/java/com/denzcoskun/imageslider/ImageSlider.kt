@@ -215,20 +215,20 @@ class ImageSlider @JvmOverloads constructor(
     }
 
     private fun scheduleTimer(period: Long) {
-        val handler = Handler()
-        val update = Runnable {
-            if (currentPage == imageCount) {
-                currentPage = 0
+        if( imageCount > 0 ){
+            val handler = Handler()
+            val update = Runnable {
+                currentPage = (currentPage + 1) % imageCount
+                viewPager!!.setCurrentItem(currentPage, true)
             }
-            viewPager!!.setCurrentItem(currentPage++, true)
-        }
 
-        swipeTimer = Timer()
-        swipeTimer.schedule(object : TimerTask() {
-            override fun run() {
-                handler.post(update)
-            }
-        }, delay, period)
+            swipeTimer = Timer()
+            swipeTimer.schedule(object : TimerTask() {
+                override fun run() {
+                    handler.post(update)
+                }
+            }, delay, period)
+        }
     }
 
     /**
