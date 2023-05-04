@@ -218,8 +218,12 @@ class ImageSlider @JvmOverloads constructor(
         if( imageCount > 0 ){
             val handler = Handler()
             val update = Runnable {
-                currentPage = (currentPage + 1) % imageCount
-                viewPager!!.setCurrentItem(currentPage, true)
+                if( imageCount <= 0) {
+                    stopSliding()
+                } else {
+                    currentPage = (currentPage + 1) % imageCount
+                    viewPager!!.setCurrentItem(currentPage, true)
+                }
             }
 
             swipeTimer = Timer()
