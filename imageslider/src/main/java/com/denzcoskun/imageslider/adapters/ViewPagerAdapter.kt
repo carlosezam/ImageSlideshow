@@ -87,7 +87,7 @@ class ViewPagerAdapter(context: Context?,
 
         container.addView(itemView)
 
-        imageView.setOnClickListener{itemClickListener?.onItemSelected(position)}
+        itemView.setOnClickListener{itemClickListener?.onItemSelected(position)}
 
         if (touchListener != null){
             imageView!!.setOnTouchListener { v, event ->
