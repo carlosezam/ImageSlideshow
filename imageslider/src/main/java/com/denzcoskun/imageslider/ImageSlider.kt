@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
@@ -113,6 +114,9 @@ open class ImageSlider @JvmOverloads constructor(
             }
         }
 
+        setOnClickListener {
+            Toast.makeText(context, "Constraint", Toast.LENGTH_SHORT).show()
+        }
     }
 
     /**
@@ -193,6 +197,9 @@ open class ImageSlider @JvmOverloads constructor(
             override fun onPageScrollStateChanged(state: Int) {}
         })
 
+        viewPager!!.setOnClickListener {
+            Toast.makeText(context, "ImageSlider.viewPager", Toast.LENGTH_SHORT).show()
+        }
     }
 
     /**
