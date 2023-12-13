@@ -27,7 +27,7 @@ import java.util.*
  * denzcoskun@hotmail.com
  * İstanbul
  */
-class ImageSlider @JvmOverloads constructor(
+open class ImageSlider @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
